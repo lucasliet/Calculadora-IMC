@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
   final Color color;
-  final Widget content;
+  final Widget child;
   final Function onPress;
 
   const CustomCard(
-      {@required this.color, this.content, @required this.onPress}
+      {@required this.color, this.child, this.onPress}
     );
 
   @override
@@ -19,7 +19,7 @@ class CustomCard extends StatelessWidget {
           color: this.color,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: content,
+        child: child,
       ),
     );
   }

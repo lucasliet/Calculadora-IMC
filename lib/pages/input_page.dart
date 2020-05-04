@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:calculadora_imc/widgets/card.dart';
-import 'package:calculadora_imc/widgets/labeled_icon.dart';
+import 'package:calculadora_imc/model/card.dart';
+import 'package:calculadora_imc/model/labeled_icon.dart';
 
 const _cardColor = Color(0xFF1D1E33);
-const _activeCardColor = Color(0xFF111328);
+const _activeCardColor = Colors.green;
+const _cardTextStyle = TextStyle(
+    fontSize: 50,
+    fontWeight: FontWeight.w900,
+);
 enum Gender{
   male,
   female,
@@ -17,6 +21,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender _gender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,7 @@ class _InputPageState extends State<InputPage> {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Expanded(
                     child: Row(
@@ -40,16 +46,16 @@ class _InputPageState extends State<InputPage> {
                           child: CustomCard(
                             onPress: () => setState(() => _gender = Gender.male),
                             color: _gender == Gender.male ? _activeCardColor : _cardColor,
-                            content: IconLabel(
+                            child: IconLabel(
                                 icon: FontAwesomeIcons.mars,
                                 label: 'MASCULINO'),
                           ),
                         ),
                         Expanded(
                           child: CustomCard(
-                            onPress: () => setState(() => _gender = Gender.female),
+                            onPress:  () => setState(() => _gender = Gender.female),
                             color: _gender == Gender.female ? _activeCardColor : _cardColor,
-                            content: IconLabel(
+                            child: IconLabel(
                                 icon: FontAwesomeIcons.venus,
                                 label: 'FEMININO'),
                           ),
@@ -58,7 +64,27 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                    child: CustomCard(color: _cardColor),
+                    child: CustomCard(
+                      color: _cardColor,
+                      child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: <Widget>[
+                         Text('ALTURA', style: TextStyle(fontSize: 14)),
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           crossAxisAlignment: CrossAxisAlignment.baseline,
+                           textBaseline: TextBaseline.alphabetic,
+                           children: <Widget>[
+                             Text(
+                               height.toString(),
+                               style: _cardTextStyle,
+                             ),
+                             Text('cm '),
+                           ],
+                         )
+                       ], 
+                      ) 
+                    ),
                   ),
                   Expanded(
                     child: Row(
@@ -79,7 +105,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.pink[500],
+                  color: Colors.pink,
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(12))),
             ),
