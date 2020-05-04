@@ -18,33 +18,40 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 2,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Card(color: _cardColor),
-                ),
-                Expanded(
-                  child: Card(color: _cardColor),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Card(color: _cardColor),
-          ),
-          Expanded(
-            flex: 2,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Card(color: _cardColor),
-                ),
-                Expanded(
-                  child: Card(color: _cardColor),
-                ),
-              ],
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Card(color: _cardColor),
+                        ),
+                        Expanded(
+                          child: Card(color: _cardColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Card(color: _cardColor),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Card(color: _cardColor),
+                        ),
+                        Expanded(
+                          child: Card(color: _cardColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -66,7 +73,7 @@ class Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(12),
+      margin: EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: this.color,
         borderRadius: BorderRadius.circular(12),
