@@ -4,6 +4,11 @@ import 'package:calculadora_imc/widgets/card.dart';
 import 'package:calculadora_imc/widgets/labeled_icon.dart';
 
 const _cardColor = Color(0xFF1D1E33);
+const _activeCardColor = Color(0xFF111328);
+enum Gender{
+  male,
+  female,
+}
 
 class InputPage extends StatefulWidget {
   @override
@@ -11,6 +16,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender _gender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +38,9 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => print('Male button was pressed'),
+                            onTap: () => setState(() => _gender = Gender.male),
                             child: CustomCard(
-                              color: _cardColor,
+                              color: _gender == Gender.male ? _activeCardColor : _cardColor,
                               content: IconLabel(
                                   icon: FontAwesomeIcons.mars,
                                   label: 'MASCULINO'),
@@ -41,11 +48,14 @@ class _InputPageState extends State<InputPage> {
                           ),
                         ),
                         Expanded(
-                          child: CustomCard(
-                            color: _cardColor,
-                            content: IconLabel(
-                                icon: FontAwesomeIcons.venus,
-                                label: 'FEMININO'),
+                          child: GestureDetector(
+                            onTap: () => setState(() => _gender = Gender.female),
+                            child: CustomCard(
+                              color: _gender == Gender.female ? _activeCardColor : _cardColor,
+                              content: IconLabel(
+                                  icon: FontAwesomeIcons.venus,
+                                  label: 'FEMININO'),
+                            ),
                           ),
                         ),
                       ],
