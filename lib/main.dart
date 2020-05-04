@@ -11,7 +11,7 @@ class IMCapp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Color(0xFF0a0E21),
-        accentColor: Colors.pinkAccent
+        accentColor: Colors.pink[500]
       ),
       home: InputPage()
     );

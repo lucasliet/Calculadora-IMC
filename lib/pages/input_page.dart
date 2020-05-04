@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:calculadora_imc/widgets/card.dart';
+import 'package:calculadora_imc/widgets/labeled_icon.dart';
 
 const _cardColor = Color(0xFF1D1E33);
 
@@ -27,25 +30,38 @@ class _InputPageState extends State<InputPage> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: Card(color: _cardColor),
+                          child: GestureDetector(
+                            onTap: () => print('Male button was pressed'),
+                            child: CustomCard(
+                              color: _cardColor,
+                              content: IconLabel(
+                                  icon: FontAwesomeIcons.mars,
+                                  label: 'MASCULINO'),
+                            ),
+                          ),
                         ),
                         Expanded(
-                          child: Card(color: _cardColor),
+                          child: CustomCard(
+                            color: _cardColor,
+                            content: IconLabel(
+                                icon: FontAwesomeIcons.venus,
+                                label: 'FEMININO'),
+                          ),
                         ),
                       ],
                     ),
                   ),
                   Expanded(
-                    child: Card(color: _cardColor),
+                    child: CustomCard(color: _cardColor),
                   ),
                   Expanded(
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                          child: Card(color: _cardColor),
+                          child: CustomCard(color: _cardColor),
                         ),
                         Expanded(
-                          child: Card(color: _cardColor),
+                          child: CustomCard(color: _cardColor),
                         ),
                       ],
                     ),
@@ -57,32 +73,13 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                 color: Colors.pinkAccent,
-                 borderRadius: BorderRadius.vertical(top: Radius.circular(12))
-              ),
+                  color: Colors.pink[500],
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(12))),
             ),
           )
         ],
       ),
-    );
-  }
-}
-
-class Card extends StatelessWidget {
-  final Color color;
-  final Widget content;
-
-  Card({@required this.color, this.content});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: this.color,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: content,
     );
   }
 }
