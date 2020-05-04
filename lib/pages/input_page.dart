@@ -18,9 +18,9 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            flex: 6,
+            flex: 7,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: <Widget>[
                   Expanded(
@@ -56,7 +56,10 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.pinkAccent,
+              decoration: BoxDecoration(
+                 color: Colors.pinkAccent,
+                 borderRadius: BorderRadius.vertical(top: Radius.circular(12))
+              ),
             ),
           )
         ],
@@ -67,8 +70,9 @@ class _InputPageState extends State<InputPage> {
 
 class Card extends StatelessWidget {
   final Color color;
+  final Widget content;
 
-  Card({@required this.color});
+  Card({@required this.color, this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +82,7 @@ class Card extends StatelessWidget {
         color: this.color,
         borderRadius: BorderRadius.circular(12),
       ),
+      child: content,
     );
   }
 }
