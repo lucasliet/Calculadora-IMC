@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../main.dart';
-import '../main.dart';
-import '../main.dart';
-import '../main.dart';
-import '../main.dart';
 import '../model/card.dart';
 import '../model/labeled_icon.dart';
 import '../model/plus_minus.dart';
