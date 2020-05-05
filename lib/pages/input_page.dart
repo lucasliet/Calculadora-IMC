@@ -104,8 +104,8 @@ class _InputPageState extends State<InputPage> {
                                     overlayRadius: 30.0),
                                 thumbColor: accentColor,
                                 overlayColor: activeColor.withAlpha(70),
-                                activeTrackColor: Colors.lightBlue[100],
-                                inactiveTrackColor: Colors.blueGrey,
+                                activeTrackColor: accentColor.withAlpha(90),
+                                inactiveTrackColor: Colors.grey,
                               ),
                               child: Slider(
                                 value: _height,
