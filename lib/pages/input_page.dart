@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:calculadora_imc/model/card.dart';
-import 'package:calculadora_imc/model/labeled_icon.dart';
+import '../main.dart';
+import '../main.dart';
+import '../main.dart';
+import '../main.dart';
+import '../main.dart';
+import '../model/card.dart';
+import '../model/labeled_icon.dart';
+import '../model/plus_minus.dart';
 
-const _cardColor = Color(0xFF1D1E33);
-const _activeCardColor = Colors.green;
-const _cardTextStyle = TextStyle(
-  fontSize: 50,
-  fontWeight: FontWeight.w900,
-);
 enum Gender {
   male,
   female,
@@ -22,6 +22,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender _gender;
   double _height = 1.65;
+  int weight = 65;
+  int age = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class _InputPageState extends State<InputPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  // GENDER SELECT
                   Expanded(
                     child: Row(
                       children: <Widget>[
@@ -47,11 +50,13 @@ class _InputPageState extends State<InputPage> {
                             onPress: () =>
                                 setState(() => _gender = Gender.male),
                             color: _gender == Gender.male
-                                ? _activeCardColor
-                                : _cardColor,
+                                ? activeColor
+                                : cardColor,
                             child: IconLabel(
-                                icon: FontAwesomeIcons.mars,
-                                label: 'MASCULINO'),
+                              icon: FontAwesomeIcons.mars,
+                              label: 'MASCULINO',
+                              labelTextStyle: labelStyle,
+                            ),
                           ),
                         ),
                         Expanded(
@@ -59,23 +64,26 @@ class _InputPageState extends State<InputPage> {
                             onPress: () =>
                                 setState(() => _gender = Gender.female),
                             color: _gender == Gender.female
-                                ? _activeCardColor
-                                : _cardColor,
+                                ? activeColor
+                                : cardColor,
                             child: IconLabel(
-                                icon: FontAwesomeIcons.venus,
-                                label: 'FEMININO'),
+                              icon: FontAwesomeIcons.venus,
+                              label: 'FEMININO',
+                              labelTextStyle: labelStyle,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
+                  // HEIGHT SELECT
                   Expanded(
                     child: CustomCard(
-                        color: _cardColor,
+                        color: cardColor,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text('ALTURA', style: TextStyle(fontSize: 14)),
+                            Text('ALTURA', style: labelStyle),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -83,7 +91,7 @@ class _InputPageState extends State<InputPage> {
                               children: <Widget>[
                                 Text(
                                   _height.toStringAsFixed(2),
-                                  style: _cardTextStyle,
+                                  style: numberStyle,
                                 ),
                                 Text('m'),
                               ],
@@ -94,8 +102,8 @@ class _InputPageState extends State<InputPage> {
                                     enabledThumbRadius: 15.0),
                                 overlayShape: RoundSliderOverlayShape(
                                     overlayRadius: 30.0),
-                                thumbColor: Colors.cyanAccent,
-                                overlayColor: Color(0x2984FFFF),
+                                thumbColor: accentColor,
+                                overlayColor: activeColor.withAlpha(70),
                                 activeTrackColor: Colors.lightBlue[100],
                                 inactiveTrackColor: Colors.blueGrey,
                               ),
@@ -103,8 +111,9 @@ class _InputPageState extends State<InputPage> {
                                 value: _height,
                                 min: 1.0,
                                 max: 3.0,
-                                onChanged: (double _newHeight) =>
-                                    setState(() => _height = _newHeight),
+                                onChanged: (double _newHeight) {
+                                    setState(() => _height = _newHeight);
+                                },
                               ),
                             )
                           ],
@@ -113,11 +122,35 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: Row(
                       children: <Widget>[
+                        // WEIGHT SELECT
                         Expanded(
-                          child: CustomCard(color: _cardColor),
+                          child: CustomCard(
+                              color: cardColor,
+                              child: PlusMinusButtons(
+                                label: 'PESO',
+                                number: weight,
+                                numberStyle: numberStyle,
+                                labelTextStyle: labelStyle,
+                                accentColor: accentColor,
+                                pressedButtonColor: activeColor,
+                                minusButton: () => setState(() => weight--),
+                                plusButton: () => setState(() => weight++),
+                              )),
                         ),
                         Expanded(
-                          child: CustomCard(color: _cardColor),
+                          child: CustomCard(
+                            color: cardColor,
+                            child: PlusMinusButtons(
+                              label: 'IDADE',
+                              number: age,
+                              numberStyle: numberStyle,
+                              labelTextStyle: labelStyle,
+                              accentColor: accentColor,
+                              pressedButtonColor: activeColor,
+                              minusButton: () => setState(() => age--),
+                              plusButton: () => setState(() => age++),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -129,7 +162,7 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xFFEB1555),
+                color: bottomButtomColor,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
               ),
             ),
