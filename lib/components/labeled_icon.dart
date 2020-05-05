@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import '../theme.dart';
 
 class IconLabel extends StatelessWidget {
   final IconData icon;
   final String label;
-  final TextStyle labelTextStyle;
 
-  IconLabel({@required this.icon, @required this.label, @required this.labelTextStyle});
+  const IconLabel({@required this.icon, @required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,7 @@ class IconLabel extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Text(
-            label,
-            style: labelTextStyle
-          ),
+          child: Text(label, style: labelStyle),
         ),
       ],
     );

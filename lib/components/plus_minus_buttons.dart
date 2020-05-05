@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../theme.dart';
 
 class PlusMinusButtons extends StatelessWidget {
   final String label;
   final int number;
-  final TextStyle labelTextStyle;
-  final TextStyle numberStyle;
-  final Color accentColor;
   final Function minusButton;
   final Function plusButton;
-  final Color pressedButtonColor;
 
-  PlusMinusButtons({
+  const PlusMinusButtons({
     @required this.label,
     @required this.number,
-    @required this.numberStyle,
-    @required this.labelTextStyle,
-    @required this.accentColor,
     @required this.minusButton,
     @required this.plusButton,
-    @required this.pressedButtonColor
   });
 
   @override
@@ -27,10 +20,7 @@ class PlusMinusButtons extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          label,
-          style: labelTextStyle,
-        ),
+        Text(label, style: labelStyle),
         Text(number.toString(), style: numberStyle),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -42,10 +32,11 @@ class PlusMinusButtons extends StatelessWidget {
                   elevation: 0.0,
                   child: const Icon(FontAwesomeIcons.minus),
                   onPressed: minusButton,
-                  constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+                  constraints:
+                      BoxConstraints.tightFor(width: 56.0, height: 56.0),
                   shape: CircleBorder(),
                   fillColor: accentColor,
-                  highlightColor: pressedButtonColor,
+                  highlightColor: activeColor,
                 ),
               ),
               Expanded(
@@ -53,10 +44,11 @@ class PlusMinusButtons extends StatelessWidget {
                   elevation: 0.0,
                   child: const Icon(FontAwesomeIcons.plus),
                   onPressed: plusButton,
-                  constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+                  constraints:
+                      BoxConstraints.tightFor(width: 56.0, height: 56.0),
                   shape: CircleBorder(),
                   fillColor: accentColor,
-                  highlightColor: pressedButtonColor,
+                  highlightColor: activeColor,
                 ),
               ),
             ],

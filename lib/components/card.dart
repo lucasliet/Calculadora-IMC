@@ -1,3 +1,4 @@
+import 'package:calculadora_imc/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
@@ -5,9 +6,7 @@ class CustomCard extends StatelessWidget {
   final Widget child;
   final Function onPress;
 
-  const CustomCard(
-      {@required this.color, this.child, this.onPress}
-    );
+  const CustomCard({this.color = cardColor, this.child, this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class CustomCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: this.color,
+          color: color,
           borderRadius: BorderRadius.circular(12),
         ),
         child: child,
