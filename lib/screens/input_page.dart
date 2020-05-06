@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme.dart';
-import '../component/card.dart';
-import '../component/slider.dart';
-import '../component/labeled_icon.dart';
-import '../component/plus_minus_buttons.dart';
-import '../component/bottom_button.dart';
+import '../components/card.dart';
+import '../components/slider.dart';
+import '../components/labeled_icon.dart';
+import '../components/plus_minus_buttons.dart';
+import '../components/bottom_button.dart';
+import '../components/results_drawer.dart';
 
 enum Gender {
   male,
@@ -26,6 +27,7 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: ResultsDrawer(),
       appBar: AppBar(
         centerTitle: true,
         title: Text("Calculadora IMC", style: titleStyle,),

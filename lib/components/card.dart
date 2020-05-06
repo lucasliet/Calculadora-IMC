@@ -1,5 +1,5 @@
-import 'package:calculadora_imc/theme.dart';
 import 'package:flutter/material.dart';
+import '../theme.dart';
 
 class CustomCard extends StatelessWidget {
   final Color color;

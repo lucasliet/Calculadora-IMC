@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../component/card.dart';
-import '../component/result_stats.dart';
-import '../component/bottom_button.dart';
+import '../components/card.dart';
+import '../components/result_stats.dart';
+import '../components/bottom_button.dart';
 import '../theme.dart';
-import '../service/calc_service.dart';
+import '../services/calc_service.dart';
 
 class ResultPage extends StatelessWidget {
   @override

@@ -17,7 +17,7 @@ class CalcService {
     if( _bmi >= 25 ){
       return {'statsResult': 'SOBREPESO', 'statsColor': Colors.red};
     } else if ( _bmi > 18.5 ){
-      return {'statsResult': 'NORMAL', 'statsColor': Colors.green};
+      return {'statsResult': 'IDEAL', 'statsColor': Colors.green};
     } else {
       return {'statsResult': 'ABAIXO DO PESO', 'statsColor': Colors.red};
     }
