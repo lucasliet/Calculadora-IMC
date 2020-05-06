@@ -1,6 +1,8 @@
 import 'package:calculadora_imc/components/bottom_button.dart';
 import 'package:flutter/material.dart';
 import '../components/card.dart';
+import '../components/result_stats.dart';
+import '../theme.dart';
 
 class ResultPage extends StatelessWidget {
   @override
@@ -8,7 +10,7 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Resultado"),
+        title: Text("Resultado", style: titleStyle),
       ),
       body: Container(
         child: Column(
@@ -16,16 +18,10 @@ class ResultPage extends StatelessWidget {
           children: <Widget>[
             Expanded(
               flex: 7,
-              child: CustomCard(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text('teste'),
-                    Text('2134'),
-                    Text('Índice IMC saudável:'),
-                    Text('18,5 - 25kg/m2'),
-                    Text('parabéns'),
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: CustomCard(
+                  child: ResultStats()
                 ),
               ),
             ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme.dart';
@@ -21,15 +20,15 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender _gender;
   double _height = 1.65;
-  int weight = 65;
-  int age = 25;
+  int _weight = 65;
+  int _age = 25;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Calculadora IMC"),
+        title: Text("Calculadora IMC", style: titleStyle,),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,18 +80,18 @@ class _InputPageState extends State<InputPage> {
                   //
                   Expanded(
                     child: CustomCard(
-                        child: CustomSlider(
-                      label: 'ALTURA',
-                      height: _height,
-                      child: Slider(
-                        value: _height,
-                        min: 1.0,
-                        max: 3.0,
-                        onChanged: (double _newHeight) {
-                          setState(() => _height = _newHeight);
-                        },
+                      child: CustomSlider(
+                        label: 'ALTURA',
+                        height: _height,
+                        child: Slider(
+                          value: _height,
+                          min: 1.0,
+                          max: 3.0,
+                          onChanged: (double _newHeight) =>
+                              setState(() => _height = _newHeight),
+                        ),
                       ),
-                    )),
+                    ),
                   ),
                   Expanded(
                     child: Row(
@@ -102,12 +101,13 @@ class _InputPageState extends State<InputPage> {
                         //
                         Expanded(
                           child: CustomCard(
-                              child: PlusMinusButtons(
-                            label: 'PESO',
-                            number: weight,
-                            minusButton: () => setState(() => weight--),
-                            plusButton: () => setState(() => weight++),
-                          )),
+                            child: PlusMinusButtons(
+                              label: 'PESO',
+                              number: _weight,
+                              minusButton: () => setState(() => _weight--),
+                              plusButton: () => setState(() => _weight++),
+                            ),
+                          ),
                         ),
                         //
                         // AGE SELECT
@@ -116,9 +116,9 @@ class _InputPageState extends State<InputPage> {
                           child: CustomCard(
                             child: PlusMinusButtons(
                               label: 'IDADE',
-                              number: age,
-                              minusButton: () => setState(() => age--),
-                              plusButton: () => setState(() => age++),
+                              number: _age,
+                              minusButton: () => setState(() => _age--),
+                              plusButton: () => setState(() => _age++),
                             ),
                           ),
                         ),
