@@ -9,7 +9,7 @@ class CustomSlider extends StatelessWidget {
   const CustomSlider({
     @required this.child,
     @required this.label,
-    @required this.height
+    @required this.height,
   });
 
   @override

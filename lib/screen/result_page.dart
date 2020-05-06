@@ -1,12 +1,18 @@
-import 'package:calculadora_imc/components/bottom_button.dart';
 import 'package:flutter/material.dart';
-import '../components/card.dart';
-import '../components/result_stats.dart';
+import '../component/card.dart';
+import '../component/result_stats.dart';
+import '../component/bottom_button.dart';
 import '../theme.dart';
+import '../service/calc_service.dart';
 
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<dynamic, Object> args = ModalRoute.of(context).settings.arguments;
+    CalcService calc = CalcService(
+        height: args['height'],
+        weight: args['weight']
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -21,7 +27,12 @@ class ResultPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: CustomCard(
-                  child: ResultStats()
+                  child: ResultStats(
+                    bmi: calc.calcIMC(),
+                    statsResult: calc.stats()['statsResult'],
+                    statsColor: calc.stats()['statsColor'],
+                    recommendations: calc.recommendations(),
+                  )
                 ),
               ),
             ),

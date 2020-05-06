@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 
 class ResultStats extends StatelessWidget {
+  final String bmi;
+  final String statsResult;
+  final Color statsColor;
+  final String recommendations;
+
+  const ResultStats({
+    @required this.bmi,
+    @required this.statsResult,
+    @required this.statsColor,
+    @required this.recommendations,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
-          'NORMAL',
+          statsResult,
           style: TextStyle(
             fontSize: 25,
-            color: Colors.green,
+            color: statsColor,
             fontWeight: FontWeight.w700,
           ),
         ),
         Text(
-          '20',
+          bmi,
           style: TextStyle(
-            fontSize: 90,
+            fontSize: 100,
             fontWeight: FontWeight.w900,
           ),
         ),
@@ -38,9 +50,13 @@ class ResultStats extends StatelessWidget {
             ),
           ],
         ),
-        Text(
-          'Você está dentro do peso ;)',
-          style: TextStyle(fontSize: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(
+            recommendations,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
+          ),
         )
       ],
     );

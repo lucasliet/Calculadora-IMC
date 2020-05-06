@@ -4,15 +4,20 @@ import '../theme.dart';
 class BottomButton extends StatelessWidget {
   final String route;
   final String label;
+  final Map<String, Object> args;
 
-  const BottomButton({this.label, this.route});
+  const BottomButton({
+    @required this.label,
+    @required this.route,
+    this.args,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: Navigator.canPop(context)
           ? () => Navigator.pop(context)
-          : () => Navigator.pushNamed(context, route),
+          : () => Navigator.pushNamed(context, route, arguments: args),
       child: Container(
         decoration: BoxDecoration(
           color: bottomButtonColor,
