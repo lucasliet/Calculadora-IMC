@@ -3,7 +3,7 @@ import '../components/card.dart';
 import '../components/result_stats.dart';
 import '../components/bottom_button.dart';
 import '../theme.dart';
-import '../services/calc_service.dart';
+import '../model/services/calc_service.dart';
 
 class ResultPage extends StatelessWidget {
   @override
