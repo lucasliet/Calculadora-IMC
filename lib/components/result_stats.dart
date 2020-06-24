@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+import '../theme.dart';
 
 class ResultStats extends StatelessWidget {
   final String bmi;
@@ -13,8 +18,39 @@ class ResultStats extends StatelessWidget {
     @required this.recommendations,
   });
 
+  recuperarBancoDados() async {
+    // ATIVA BANCO DE DADOS
+
+    final caminhoBancoDados = await getDatabasesPath();
+    final localBancoDados = join(caminhoBancoDados, "banco.db");
+
+    var bd = await openDatabase(
+        //abre e cria o banco de dados
+        localBancoDados,
+        version: 1, onCreate: (db, dbVersaoRecente) {
+      String sql =
+          "CREATE TABLE results (id INTEGER PRIMARY KEY AUTOINCREMENT, result INTEGER, date DATE )";
+      db.execute(sql);
+    });
+
+    //print("aberto: " + bd.isOpen.toString());
+    return bd;
+  }
+
+  salvar({result, date}) async {
+    Database bd = await recuperarBancoDados(); //acessa o banco criado
+
+    Map<String, dynamic> insertResult = {
+      "result": result,
+      "date": date,
+    };
+    int id = await bd.insert("results", insertResult); //sempre retonra o id
+    print("Salvo: $id");
+  }
+
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting("pt_BR");
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -56,6 +92,20 @@ class ResultStats extends StatelessWidget {
             recommendations,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20),
+          ),
+        ),
+        FlatButton(
+          color: accentColor,
+          onPressed: () async {
+            var _dateFormatter = DateFormat('dd/MM/yyyy', 'pt_BR');
+            var _date = DateTime.now();
+            var _parsedDate = _dateFormatter.format(_date);
+
+            salvar(result: bmi, date: _parsedDate);
+          },
+          child: Text(
+            'Salvar',
+            style: TextStyle(fontSize: 16),
           ),
         )
       ],

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class Result {
   final int id;
-  final int result;
-  final DateTime date;
+  final String result;
+  final String date;
 
   Result({
-    @required this.id,
+    this.id,
     @required this.result,
     @required this.date,
   });
