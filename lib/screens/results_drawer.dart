@@ -16,7 +16,6 @@ class _ResultsDrawerState extends State<ResultsDrawer> {
   void _getResults() async {
     List<Result> response = await service.getResults();
     setState(() => results = response);
-    print(response);
   }
 
   @override

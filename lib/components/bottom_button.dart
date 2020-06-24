@@ -15,9 +15,7 @@ class BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: Navigator.canPop(context)
-          ? () => Navigator.pop(context)
-          : () => Navigator.pushNamed(context, route, arguments: args),
+      onTap: () => Navigator.pushNamed(context, route, arguments: args),
       child: Container(
         decoration: BoxDecoration(
           color: bottomButtonColor,

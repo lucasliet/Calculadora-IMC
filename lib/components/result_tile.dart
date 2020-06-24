@@ -1,4 +1,4 @@
-import 'package:calculadora_imc/components/card.dart';
+import 'package:calculadora_imc/components/custom_card.dart';
 import 'package:calculadora_imc/model/entity/result.dart';
 import 'package:flutter/material.dart';
 
