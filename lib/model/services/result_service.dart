@@ -19,7 +19,7 @@ class ResultService {
 
     double _parsedBMI = double.tryParse(bmi) ?? 0.0;
 
-    Result result = new Result(result: _parsedBMI, date: _parsedDate);
+    Result result = new Result(bmi: _parsedBMI, date: _parsedDate);
     print(result.toMap());
     await dao.insert(db: db,result: result);
     await db.close();
@@ -30,5 +30,11 @@ class ResultService {
     List<Result> resultList = await dao.getResults(db);
     db.close();
     return resultList;
+  }
+
+  void deleteResult(int id) async {
+    Database db = await dao.init();
+    await dao.deleteResult(db: db, id: id);
+    db.close();
   }
 }

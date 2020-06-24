@@ -1,4 +1,4 @@
-import 'package:calculadora_imc/components/card.dart';
+import 'package:calculadora_imc/components/result_tile.dart';
 import 'package:calculadora_imc/model/entity/result.dart';
 import 'package:calculadora_imc/model/services/result_service.dart';
 import 'package:calculadora_imc/theme.dart';
@@ -10,10 +10,10 @@ class ResultsDrawer extends StatefulWidget {
 }
 
 class _ResultsDrawerState extends State<ResultsDrawer> {
+  ResultService service = new ResultService();
   List<Result> results = [];
 
   void _getResults() async {
-    ResultService service = new ResultService();
     List<Result> response = await service.getResults();
     setState(() => results = response);
     print(response);
@@ -30,8 +30,8 @@ class _ResultsDrawerState extends State<ResultsDrawer> {
     return Drawer(
       child: Container(
         color: backgroundColor,
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               color: cardColor,
@@ -39,40 +39,16 @@ class _ResultsDrawerState extends State<ResultsDrawer> {
                 child: Text('Seus resultados', style: titleStyle),
               ),
             ),
-            Container(
-              height: double.maxFinite,
+            Expanded(
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return CustomCard(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12),
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('Data'),
-                              Text(results[index].date,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w800)),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: <Widget>[
-                              Text('Resultado'),
-                              Text(results[index].result.toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w800)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      onTap: () {},
-                    ),
+                  return ListTile(
+                    contentPadding: EdgeInsets.all(0),
+                    title: ResultTile(result: results[index]),
+                    onLongPress: () {
+                      service.deleteResult(results[index].id);
+                      _getResults();
+                    },
                   );
                 },
                 itemCount: results.length,

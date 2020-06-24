@@ -17,7 +17,7 @@ class ResultDAO {
             '''
             CREATE TABLE results (
                   id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                  result DOUBLE, 
+                  bmi DOUBLE, 
                   date DATE
             )
             '''
@@ -42,7 +42,7 @@ class ResultDAO {
 
   Future<Result> getResult({Database db, int id}) async {
     List<Map> dbAnswer = await db.query("results",
-        columns: ["id", "result", "date"], where: 'id = ?', whereArgs: [id]);
+        columns: ["id", "bmi", "date"], where: 'id = ?', whereArgs: [id]);
 
     if (dbAnswer.length > 0) {
       return new Result.fromMap(dbAnswer.first);

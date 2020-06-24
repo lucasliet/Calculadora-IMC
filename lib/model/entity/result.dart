@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 
 class Result {
   final int id;
-  final double result;
+  final double bmi;
   final String date;
 
   Result({
     this.id,
-    @required this.result,
+    @required this.bmi,
     @required this.date,
   });
 
   factory Result.fromMap(Map<String, dynamic> data) => new Result(
     id: data["id"],
-    result: data["result"],
+    bmi: data["bmi"],
     date: data["date"],
   );
 
   Map toMap() {
     Map<String, dynamic> parsedMap = {
-      'result': result,
+      'bmi': bmi,
       'date': date,
     };
     if(id != null) {
@@ -33,7 +33,7 @@ class Result {
     return
       '\nResult{\n'
           'id: $id, \n'
-          'result: $result, \n'
+          'bmi: $bmi, \n'
           'date: $date \n'
       '}';
   }
