@@ -32,8 +32,8 @@ class CustomSlider extends StatelessWidget {
         ),
         SliderTheme(
             data: SliderTheme.of(context).copyWith(
-              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-              overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 14.0),
+              overlayShape: RoundSliderOverlayShape(overlayRadius: 20.0),
               thumbColor: accentColor,
               overlayColor: activeColor.withAlpha(70),
               activeTrackColor: accentColor.withAlpha(90),
