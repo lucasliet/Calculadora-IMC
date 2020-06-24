@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Result {
   final int id;
-  final String result;
+  final double result;
   final String date;
 
   Result({
@@ -17,18 +17,25 @@ class Result {
     date: data["date"],
   );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id' : id,
+  Map toMap() {
+    Map<String, dynamic> parsedMap = {
       'result': result,
       'date': date,
     };
+    if(id != null) {
+      parsedMap['id'] = id;
+    }
+    return parsedMap;
   }
 
   @override
   String toString() {
-    return 'Result{id: $id, result: $result, date: $date}';
+    return
+      '\nResult{\n'
+          'id: $id, \n'
+          'result: $result, \n'
+          'date: $date \n'
+      '}';
   }
-
 }
 

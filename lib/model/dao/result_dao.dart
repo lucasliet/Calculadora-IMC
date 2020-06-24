@@ -5,33 +5,42 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ResultDAO {
-  Database db;
-  Future<Database> createDatabase() async {
-    final String databasesPath = await getDatabasesPath();
-    final String dbPath = join(databasesPath, 'results.db');
+  Future<Database> init() async {
+    final databasesPath = await getDatabasesPath();
+    final dbPath = join(databasesPath, "database.db");
 
-    return await openDatabase(
-      dbPath,
-      version: 1,
-      onCreate: (Database database, int version) {
-        database.execute("CREATE TABLE results (id INTEGER PRIMARY KEY AUTOINCREMENT, result INTEGER, date DATE )");
-      },
-    );
+    Database db = await openDatabase(
+        dbPath,
+        version: 1,
+        onCreate: (db, int version){
+        db.execute(
+            '''
+            CREATE TABLE results (
+                  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  result DOUBLE, 
+                  date DATE
+            )
+            '''
+        );
+    });
+    return db;
   }
 
-  Future<int> createResult({result, date}) async {
-    Database bd = await createDatabase();
-    Map<String, dynamic> insertResult = {"result": result, "date": date};
-    int dbAnswer = await bd.insert("results", insertResult);
-    return dbAnswer;
+  Future<int> insert({Database db, Result result}) async {
+    int insertedId = await db.insert("results", result.toMap());
+    return insertedId;
   }
 
-  Future<List> getResults() async {
-    var dbAnswer = await db.query("results", columns: ["id", "result", "date"]);
-    return dbAnswer.toList();
+  Future<List> getResults(Database db) async {
+    List<Map> dbAnswer = await db.query("results");
+    List<Result> results = [];
+    for (Map result in dbAnswer) {
+      results.add(Result.fromMap(result));
+    }
+    return results;
   }
 
-  Future<Result> getResult(int id) async {
+  Future<Result> getResult({Database db, int id}) async {
     List<Map> dbAnswer = await db.query("results",
         columns: ["id", "result", "date"], where: 'id = ?', whereArgs: [id]);
 
@@ -41,7 +50,7 @@ class ResultDAO {
     return null;
   }
 
-  Future<int> deleteResult(int id) async {
+  Future<int> deleteResult({Database db, int id}) async {
     return await db.delete("results", where: 'id = ?', whereArgs: [id]);
   }
 }
