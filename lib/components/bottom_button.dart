@@ -4,11 +4,11 @@ import '../theme.dart';
 class BottomButton extends StatelessWidget {
   final String route;
   final String label;
-  final Map<String, Object> args;
+  final Map<String, Object>? args;
 
   const BottomButton({
-    @required this.label,
-    @required this.route,
+    required this.label,
+    required this.route,
     this.args,
   });
 

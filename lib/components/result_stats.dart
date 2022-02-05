@@ -5,15 +5,15 @@ import 'package:intl/date_symbol_data_local.dart';
 
 class ResultStats extends StatelessWidget {
   final String bmi;
-  final String statsResult;
-  final Color statsColor;
+  final String? statsResult;
+  final Color? statsColor;
   final String recommendations;
 
   const ResultStats({
-    @required this.bmi,
-    @required this.statsResult,
-    @required this.statsColor,
-    @required this.recommendations,
+    required this.bmi,
+    required this.statsResult,
+    required this.statsColor,
+    required this.recommendations,
   });
 
   @override
@@ -23,7 +23,7 @@ class ResultStats extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
-          statsResult,
+          statsResult!,
           style: TextStyle(
             fontSize: 25,
             color: statsColor,

@@ -5,7 +5,7 @@ class IconLabel extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const IconLabel({@required this.icon, @required this.label});
+  const IconLabel({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {

@@ -26,8 +26,8 @@ class ResultDAO {
     return db;
   }
 
-  Future<int> insert({Database db, Result result}) async {
-    int insertedId = await db.insert("results", result.toMap());
+  Future<int> insert({required Database db, required Result result}) async {
+    int insertedId = await db.insert("results", result.toMap() as Map<String, Object?>);
     return insertedId;
   }
 
@@ -35,22 +35,22 @@ class ResultDAO {
     List<Map> dbAnswer = await db.query("results");
     List<Result> results = [];
     for (Map result in dbAnswer) {
-      results.add(Result.fromMap(result));
+      results.add(Result.fromMap(result as Map<String, dynamic>));
     }
     return results;
   }
 
-  Future<Result> getResult({Database db, int id}) async {
+  Future<Result?> getResult({required Database db, int? id}) async {
     List<Map> dbAnswer = await db.query("results",
         columns: ["id", "bmi", "date"], where: 'id = ?', whereArgs: [id]);
 
     if (dbAnswer.length > 0) {
-      return new Result.fromMap(dbAnswer.first);
+      return new Result.fromMap(dbAnswer.first as Map<String, dynamic>);
     }
     return null;
   }
 
-  Future<int> deleteResult({Database db, int id}) async {
+  Future<int> deleteResult({required Database db, int? id}) async {
     return await db.delete("results", where: 'id = ?', whereArgs: [id]);
   }
 }

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class CalcService {
-  final double height;
-  final int weight;
-  double _bmi;
+  final double? height;
+  final int? weight;
+  late double _bmi;
 
-  CalcService({@required this.height,@required this.weight});
+  CalcService({required this.height,required this.weight});
 
   String calcIMC() {
-    _bmi = weight / pow( height , 2 );
+    _bmi = weight! / pow( height! , 2 );
     return _bmi.toStringAsFixed(1);
   }
 

@@ -9,10 +9,10 @@ class PlusMinusButtons extends StatelessWidget {
   final Function plusButton;
 
   const PlusMinusButtons({
-    @required this.label,
-    @required this.number,
-    @required this.minusButton,
-    @required this.plusButton,
+    required this.label,
+    required this.number,
+    required this.minusButton,
+    required this.plusButton,
   });
 
   @override
@@ -31,7 +31,7 @@ class PlusMinusButtons extends StatelessWidget {
                 child: RawMaterialButton(
                   elevation: 0.0,
                   child: const Icon(FontAwesomeIcons.minus),
-                  onPressed: minusButton,
+                  onPressed: minusButton as void Function()?,
                   constraints:
                       BoxConstraints.tightFor(width: 56.0, height: 56.0),
                   shape: CircleBorder(),
@@ -43,7 +43,7 @@ class PlusMinusButtons extends StatelessWidget {
                 child: RawMaterialButton(
                   elevation: 0.0,
                   child: const Icon(FontAwesomeIcons.plus),
-                  onPressed: plusButton,
+                  onPressed: plusButton as void Function()?,
                   constraints:
                       BoxConstraints.tightFor(width: 56.0, height: 56.0),
                   shape: CircleBorder(),

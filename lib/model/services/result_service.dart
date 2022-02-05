@@ -4,13 +4,13 @@ import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ResultService {
-  ResultDAO dao;
+  late ResultDAO dao;
 
   ResultService() {
     this.dao = new ResultDAO();
   }
 
-  void insert({String bmi}) async {
+  void insert({required String bmi}) async {
     Database db = await dao.init();
 
     DateFormat _dateFormatter = DateFormat('dd/MM/yyyy', 'pt_BR');
@@ -21,18 +21,18 @@ class ResultService {
 
     Result result = new Result(bmi: _parsedBMI, date: _parsedDate);
     print(result.toMap());
-    await dao.insert(db: db,result: result);
+    await dao.insert(db: db, result: result);
     await db.close();
   }
 
   Future<List<Result>> getResults() async {
     Database db = await dao.init();
-    List<Result> resultList = await dao.getResults(db);
+    List<Result> resultList = await dao.getResults(db) as List<Result>;
     db.close();
     return resultList;
   }
 
-  void deleteResult(int id) async {
+  void deleteResult(int? id) async {
     Database db = await dao.init();
     await dao.deleteResult(db: db, id: id);
     db.close();

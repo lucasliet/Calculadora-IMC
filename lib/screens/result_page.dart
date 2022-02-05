@@ -8,10 +8,10 @@ import '../model/services/calc_service.dart';
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Map<dynamic, Object> args = ModalRoute.of(context).settings.arguments;
+    final Map<dynamic, Object> args = ModalRoute.of(context)!.settings.arguments as Map<dynamic, Object>;
     CalcService calc = CalcService(
-        height: args['height'],
-        weight: args['weight']
+        height: args['height'] as double?,
+        weight: args['weight'] as int?
     );
     return Scaffold(
       appBar: AppBar(
@@ -29,8 +29,8 @@ class ResultPage extends StatelessWidget {
                 child: CustomCard(
                   child: ResultStats(
                     bmi: calc.calcIMC(),
-                    statsResult: calc.stats()['statsResult'],
-                    statsColor: calc.stats()['statsColor'],
+                    statsResult: calc.stats()['statsResult'] as String?,
+                    statsColor: calc.stats()['statsColor'] as Color?,
                     recommendations: calc.recommendations(),
                   )
                 ),

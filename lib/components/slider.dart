@@ -7,9 +7,9 @@ class CustomSlider extends StatelessWidget {
   final Slider child;
 
   const CustomSlider({
-    @required this.child,
-    @required this.label,
-    @required this.height,
+    required this.child,
+    required this.label,
+    required this.height,
   });
 
   @override

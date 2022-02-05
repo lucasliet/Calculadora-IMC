@@ -6,7 +6,7 @@ class ResultTile extends StatelessWidget {
   final Result result;
 
   ResultTile({
-    @required this.result,
+    required this.result,
   });
 
   @override
@@ -22,7 +22,7 @@ class ResultTile extends StatelessWidget {
               children: <Widget>[
                 Text('Data'),
                 Text(
-                  result.date,
+                  result.date!,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
